@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SocialMediaApplication.DbContexts;
 
@@ -10,9 +11,10 @@ using SocialMediaApplication.DbContexts;
 namespace SocialMediaApplication.Migrations
 {
     [DbContext(typeof(SocialMediaDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220724112049_Model Created")]
+    partial class ModelCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,19 +23,21 @@ namespace SocialMediaApplication.Migrations
 
             modelBuilder.Entity("SocialMediaApplication.Models.Comments", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Comment")
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("FeedId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("FeedId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("FeedId");
+                    b.HasKey("CommentId");
 
                     b.ToTable("Comments");
                 });
@@ -67,34 +71,36 @@ namespace SocialMediaApplication.Migrations
 
             modelBuilder.Entity("SocialMediaApplication.Models.Likes", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("LikeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("FeedId")
+                    b.Property<int>("FeedId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("FeedId");
+                    b.HasKey("LikeId");
 
                     b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("SocialMediaApplication.Models.TaggedUsers", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("FeedId")
+                    b.Property<int>("FeedId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("FeedId");
+                    b.HasKey("CommentId");
 
-                    b.ToTable("TaggedUsers");
+                    b.ToTable("taggedUsers");
                 });
 
             modelBuilder.Entity("SocialMediaApplication.Models.User", b =>
@@ -123,41 +129,11 @@ namespace SocialMediaApplication.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("SocialMediaApplication.Models.Comments", b =>
-                {
-                    b.HasOne("SocialMediaApplication.Models.Feed", null)
-                        .WithMany("Comments")
-                        .HasForeignKey("FeedId");
-                });
-
             modelBuilder.Entity("SocialMediaApplication.Models.Feed", b =>
                 {
                     b.HasOne("SocialMediaApplication.Models.User", null)
                         .WithMany("Posts")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("SocialMediaApplication.Models.Likes", b =>
-                {
-                    b.HasOne("SocialMediaApplication.Models.Feed", null)
-                        .WithMany("LikedById")
-                        .HasForeignKey("FeedId");
-                });
-
-            modelBuilder.Entity("SocialMediaApplication.Models.TaggedUsers", b =>
-                {
-                    b.HasOne("SocialMediaApplication.Models.Feed", null)
-                        .WithMany("TaggedUsersId")
-                        .HasForeignKey("FeedId");
-                });
-
-            modelBuilder.Entity("SocialMediaApplication.Models.Feed", b =>
-                {
-                    b.Navigation("Comments");
-
-                    b.Navigation("LikedById");
-
-                    b.Navigation("TaggedUsersId");
                 });
 
             modelBuilder.Entity("SocialMediaApplication.Models.User", b =>

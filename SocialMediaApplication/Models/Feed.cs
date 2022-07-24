@@ -16,28 +16,21 @@ namespace SocialMediaApplication.Models
         [Required(ErrorMessage = "Provide Feed")]
         public string FeedBody { get; set; }
         public DateTime CreatedAt { get; set; }
-        public List<Likes>? LikedById { get; set; }
-        public List<Comments>? Comments { get; set; }
-        public List<TaggedUsers>? TaggedUsersId { get; set; }
+        //[ForeignKey("Feed")]
+        //public List<Likes>? LikedById { get; set; }
+        //public List<Comments>? Comments { get; set; }
+        //public List<TaggedUsers>? TaggedUsersId { get; set; }
+
+        public static implicit operator List<object>(Feed v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 
-    public class Likes
-    {
-        [ForeignKey("Users")]
-        public int Id { get; set; }
-    }
+    
 
-    public class Comments
-    {
-        [ForeignKey("Users")]
-        public int Id { get; set; }
-        public int Comment { get; set; }
-    }
+    
 
-    public class TaggedUsers
-    {
-        [ForeignKey("Users")]
-        public int Id { get; set; }
-    }
+    
 }
