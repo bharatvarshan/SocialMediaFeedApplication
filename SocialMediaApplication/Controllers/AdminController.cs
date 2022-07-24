@@ -1,7 +1,6 @@
 ﻿using SocialMediaApplication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SocialMediaApplication.DbContexts;
 
 namespace SocialMediaApplication.Controllers
 {
@@ -10,23 +9,23 @@ namespace SocialMediaApplication.Controllers
     public class AdminController : Controller
     {
         private readonly IConfiguration _configuration;
-        private readonly SocialMediaDbContext _context;
-        public AdminController(IConfiguration configuration, SocialMediaDbContext context)
+        private readonly socialfeeddbContext _context;
+        public AdminController(IConfiguration configuration, socialfeeddbContext context)
         {
             _context = context;
             _configuration = configuration;
         }
-        
+
         [HttpGet]
         [Route("getUser/{id}")]
-        public IEnumerable<User> getTicket(int? id)
+        public IEnumerable<User> getUser(int? id)
         {
             var user = _context.Users.Where(e => e.UserId == id);
             return (user);
         }
         [HttpPut]
         [Route("updateUser/{userId}")]
-        public string updateUser(int userId,[FromBody] User user)
+        public string updateUser(int userId, [FromBody] User user)
         {
             try
             {

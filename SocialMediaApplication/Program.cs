@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using SocialMediaApplication.DbContexts;
+using SocialMediaApplication.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 
@@ -36,12 +36,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false
         };
     });
-
-builder.Services.AddDbContext<SocialMediaDbContext>(options =>
+builder.Services.AddDbContext<socialfeeddbContext>(options =>
 {
     var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
     options.UseMySql(builder.Configuration.GetConnectionString("MySqlDevEnv"), serverVersion);
 });
+
 
 var app = builder.Build();
 

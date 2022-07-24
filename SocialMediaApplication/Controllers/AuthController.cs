@@ -11,7 +11,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
-using SocialMediaApplication.DbContexts;
+
 
 namespace CollegeManagement.Controllers
 {
@@ -20,9 +20,9 @@ namespace CollegeManagement.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        private readonly SocialMediaDbContext _context;
+        private readonly socialfeeddbContext _context;
 
-        public AuthController(IConfiguration configuration, SocialMediaDbContext context)
+        public AuthController(IConfiguration configuration, socialfeeddbContext context)
         {
             _context = context;
             _configuration = configuration;
@@ -46,16 +46,19 @@ namespace CollegeManagement.Controllers
             {
                 return BadRequest("User Not Found");
             }
-            string token = CreateToken(user);
+            string token = CreateToken(dbUser);
             return Ok(token);
         }
 
-        private string CreateToken(Login user)
+        private string CreateToken(User user)
         {
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role,"1")
+                new Claim(ClaimTypes.Role,"1"),
+                new Claim("Id",user.UserId.ToString())
+                
+
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
@@ -94,6 +97,6 @@ namespace CollegeManagement.Controllers
             return Ok();
 
         }
-        
+
     }
 }

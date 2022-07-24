@@ -1,23 +1,27 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SocialMediaApplication.Models
 {
-    public class User
+    public partial class User
     {
-        [Key]
-        [Required]
-        public int UserId { get; set; }
-        [Required(ErrorMessage = "Provide Name")]
-        public string UserName { get; set; }
-        [Required(ErrorMessage = "Provide Email")]
-        public string Email { get; set; }
-        [Required(ErrorMessage = "Provide Password")]
-        public string Password { get; set; }
-        [DefaultValue(false)]
-        public bool isAdmin { get; set; }
-        public List<Feed>? Posts { get; set; }
+        public User()
+        {
+            Comments = new HashSet<Comment>();
+            Feeds = new HashSet<Feed>();
+            Likes = new HashSet<Like>();
+            Tags = new HashSet<Tag>();
+        }
 
+        public int UserId { get; set; }
+        public string UserName { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string Password { get; set; } = null!;
+        public bool IsAdmin { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Feed> Feeds { get; set; }
+        public virtual ICollection<Like> Likes { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

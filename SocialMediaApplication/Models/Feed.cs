@@ -1,36 +1,25 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SocialMediaApplication.Models
 {
-    
-    public class Feed
+    public partial class Feed
     {
-        [Key]
-        [Required]
-        public int FeedId { get; set; }
-        [Required(ErrorMessage = "Provide Feed Title")]
-        public string Title { get; set; }
-        [Required(ErrorMessage = "Provide Feed")]
-        public string FeedBody { get; set; }
-        public DateTime CreatedAt { get; set; }
-        //[ForeignKey("Feed")]
-        //public List<Likes>? LikedById { get; set; }
-        //public List<Comments>? Comments { get; set; }
-        //public List<TaggedUsers>? TaggedUsersId { get; set; }
-
-        public static implicit operator List<object>(Feed v)
+        public Feed()
         {
-            throw new NotImplementedException();
+            Comments = new HashSet<Comment>();
+            Likes = new HashSet<Like>();
+            Tags = new HashSet<Tag>();
         }
+
+        public int FeedId { get; set; }
+        public string Title { get; set; } = null!;
+        public string FeedBody { get; set; } = null!;
+        public int? PostedBy { get; set; }
+
+        public virtual User? PostedByNavigation { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Like> Likes { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
     }
-
-
-    
-
-    
-
-    
 }

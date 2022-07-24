@@ -1,122 +1,134 @@
 ﻿using SocialMediaApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SocialMediaApplication.DbContexts;
+using Microsoft.AspNetCore.Authorization;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace SocialMediaApplication.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]"), Authorize(Roles = "1")]
     [ApiController]
     public class FeedController : ControllerBase
     {
-        private readonly SocialMediaDbContext _context;
-        public FeedController(SocialMediaDbContext context)
+        private readonly socialfeeddbContext _context;
+        public FeedController(socialfeeddbContext context)
         {
             _context = context;
         }
+
+
         [HttpGet]
         [Route("[Action]")]
-        public async Task<ActionResult<List<Feed>>> Index()
+        public async Task<ActionResult<Feed>> GetFeed()
         {
-            return Ok(_context.Feeds.ToList<Feed>());
-        }
+            var userId = decode();
 
-        [HttpGet]
-        [Route("[Action]/{id}")]
-        public async Task<ActionResult<Object>> GetFeed(int id)
-        {
-            if (id == null || _context?.Feeds == null)
+            if (_context?.Feeds == null)
             {
-                return BadRequest(new { msg = "Id should not be null" });
+                return BadRequest(new { msg = "Please Login" });
             }
 
-            var feed = await _context.Feeds.FirstOrDefaultAsync(x => x.FeedId == id);
+            var feed = await _context.Feeds.Where(x => x.PostedBy == userId).ToListAsync() ;
 
             if (feed == null)
             {
-                return NotFound(new { msg = $"Feed not found with id {id}" });
+                return NotFound(new { msg = $"Feed not found for user id {userId}" });
             }
 
             return Ok(feed);
         }
 
 
-        [HttpPut]
-        [Route("[Action]/{userId}")]
-        public async Task<ActionResult<User>> AddFeed(int userId, [FromBody] Feed feed)
+        [HttpGet]
+        [Route("[Action]")]
+        public async Task<ActionResult<Object>> GetAllFeed()
         {
-
-            Console.WriteLine(feed.FeedId);
-            if (true)
+            if (_context?.Feeds == null)
             {
-                var user = await _context.Users.FirstOrDefaultAsync(x => x.UserId == userId);
-                if (user != null && feed != null)
-                {
-                        //var likesl = new List<Likes>();
-                        //Likes l = new Likes()
-                        //{
-                        //    Id = 1
-                        //};
-                        //likesl.Append(l);
-                        //var commentl = new List<Comments>();
-                        //Comments c = new Comments()
-                        //{
-                    
-                        //    Id = 1,
-                        //    Comment = "abc"
-                        //};
-                        //commentl.Append(c);
-
-                        //var tags = new List<TaggedUsers>();
-                        //TaggedUsers t = new TaggedUsers()
-                        //{
-                        //    Id = 1
-                        //};
-                        //tags.Append(t);
-                        //Feed feedq = new Feed()
-                        //{
-                        //    FeedId = 1,
-                        //    Title = "title",
-                        //    FeedBody = "bodydfsdf",
-                        //    CreatedAt = DateTime.Now,
-                        //    LikedById = likesl,
-                        //    Comments = commentl,
-                        //    TaggedUsersId = tags
-                       
-                        //};
-                    user.Posts?.Append(feed);
-                    await _context.SaveChangesAsync();
-                    return Ok(user);
-
-                }
-                return Ok("Error while Adding feed");
-
+                return BadRequest(new { msg = "No Feed Available" });
             }
+
+            var feed = await _context.Feeds.ToListAsync();
+
+           
+
+            return Ok(feed);
         }
 
 
-        //[HttpPut]
-        //[Route("[Action]/{studentid}")]
-        //public async Task<ActionResult<User>> UpdateStudentProfile(int studentid, [FromBody] User user)
-        //{
-        //    if (true)
-        //    {
-        //        var userdb = await _context.Users.FirstOrDefaultAsync(x => x.Id == studentid);
-        //        if (userdb != null)
-        //        {
+        [HttpPost]
+        [Route("[Action]")]
+        public async Task<ActionResult<Feed>> AddFeed([FromBody] Feed feed)
+        {
+            var userId = decode();
 
-        //            userdb.Name = user.Name;
+            _context.Feeds.Add(new Feed
+            {
+                Title = feed.Title,
+                FeedBody = feed.FeedBody,
+                PostedBy = userId
+            });
+            await _context.SaveChangesAsync();
+            return Ok(new { msg = "New Feed Added Successfully"});
+        }
 
-        //            userdb.Email = user.Email;
-        //            userdb.Password = user.Password;
-        //            await _context.SaveChangesAsync();
-        //            return Ok(userdb);
 
-        //        }
-        //        return Ok("Error while updating Student Profile data");
+        [HttpPut]
+        [Route("[Action]/{feedId}")]
+        public string UpdateFeed(int feedId, [FromBody] Feed feed)
+        {
 
-        //    }
+            var userId = decode();
 
-        //}
+            try
+            {
+                var newChanges = _context.Feeds.Where(e => e.FeedId == feedId && e.PostedBy == userId).SingleOrDefault();
+                if (newChanges == null)
+                {
+                    return "Update Failed";
+                } 
+                newChanges.Title = feed.Title;
+                newChanges.FeedBody = feed.FeedBody;
+                
+               
+                _context.SaveChanges();
+                return "Update Successfull";
+            }
+            catch (Exception ex)
+            {
+                return "Error Occured " + ex;
+            }
+        }
+
+        [HttpDelete]
+        [Route("[Action]/{feedId}")]
+        public string DeleteFeed(int? feedId)
+        {
+
+            var userId = decode();
+            try
+            {
+                var feed = _context.Feeds.Where(e => e.FeedId == feedId && e.PostedBy == userId).SingleOrDefault();
+                _context.Feeds.Remove(feed);
+                _context.SaveChanges();
+                return "Feed " + feed.FeedId + " is Deleted Successfully";
+            }
+            catch (Exception ex)
+            {
+                return "Exception occurred: " + ex;
+            }
+        }
+
+        private int decode()
+        {
+            var handler = new JwtSecurityTokenHandler();
+            string authHeader = Request.Headers["Authorization"];
+            authHeader = authHeader.Replace("bearer ", "");
+            var jsonToken = handler.ReadToken(authHeader);
+            var tokenS = handler.ReadToken(authHeader) as JwtSecurityToken;
+            var id = tokenS.Claims.First(claim => claim.Type == "Id").Value;
+            Console.WriteLine("id", id);
+            return Convert.ToInt32(id);
+        }
     }
 }
