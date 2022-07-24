@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace SocialMediaApplication.Models
 {
@@ -13,7 +14,9 @@ namespace SocialMediaApplication.Models
         public string Email { get; set; }
         [Required(ErrorMessage = "Provide Password")]
         public string Password { get; set; }
-        
-        public Feed Posts { get; set; }
+        [DefaultValue(false)]
+        public bool isAdmin { get; set; }
+        public List<Feed>? Posts { get; set; }
+
     }
 }

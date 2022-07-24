@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\presidio\\dotNet-Training\\SocialMediaApplication\\SocialMediaApplication\\SocialMediaApplication.csproj": {}
+    "D:\\presidio\\SocialMediaApplication\\SocialMediaApplication\\SocialMediaApplication.csproj": {}
   },
   "projects": {
-    "D:\\presidio\\dotNet-Training\\SocialMediaApplication\\SocialMediaApplication\\SocialMediaApplication.csproj": {
+    "D:\\presidio\\SocialMediaApplication\\SocialMediaApplication\\SocialMediaApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\presidio\\dotNet-Training\\SocialMediaApplication\\SocialMediaApplication\\SocialMediaApplication.csproj",
+        "projectUniqueName": "D:\\presidio\\SocialMediaApplication\\SocialMediaApplication\\SocialMediaApplication.csproj",
         "projectName": "SocialMediaApplication",
-        "projectPath": "D:\\presidio\\dotNet-Training\\SocialMediaApplication\\SocialMediaApplication\\SocialMediaApplication.csproj",
+        "projectPath": "D:\\presidio\\SocialMediaApplication\\SocialMediaApplication\\SocialMediaApplication.csproj",
         "packagesPath": "C:\\Users\\VC\\.nuget\\packages\\",
-        "outputPath": "D:\\presidio\\dotNet-Training\\SocialMediaApplication\\SocialMediaApplication\\obj\\",
+        "outputPath": "D:\\presidio\\SocialMediaApplication\\SocialMediaApplication\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\VC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -53,6 +57,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.Filters": {
+              "target": "Package",
+              "version": "[7.0.3, )"
             }
           },
           "imports": [

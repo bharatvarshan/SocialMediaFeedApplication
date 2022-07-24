@@ -10,7 +10,7 @@ using SocialMediaApplication.DbContexts;
 
 namespace SocialMediaApplication.Migrations
 {
-    [DbContext(typeof(MyDbContext))]
+    [DbContext(typeof(SocialMediaDbContext))]
     [Migration("20220723145955_initial commit")]
     partial class initialcommit
     {

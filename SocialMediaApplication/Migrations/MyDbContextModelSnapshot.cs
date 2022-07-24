@@ -9,7 +9,7 @@ using SocialMediaApplication.DbContexts;
 
 namespace SocialMediaApplication.Migrations
 {
-    [DbContext(typeof(MyDbContext))]
+    [DbContext(typeof(SocialMediaDbContext))]
     partial class MyDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -19,15 +19,30 @@ namespace SocialMediaApplication.Migrations
                 .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("SocialMediaApplication.Models.Comments", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Comment")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FeedId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FeedId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("SocialMediaApplication.Models.Feed", b =>
                 {
                     b.Property<int>("FeedId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<string>("Comments")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
@@ -36,21 +51,50 @@ namespace SocialMediaApplication.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("LikedBy")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("TaggedUsers")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("FeedId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Feeds");
+                });
+
+            modelBuilder.Entity("SocialMediaApplication.Models.Likes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FeedId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FeedId");
+
+                    b.ToTable("Likes");
+                });
+
+            modelBuilder.Entity("SocialMediaApplication.Models.TaggedUsers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FeedId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FeedId");
+
+                    b.ToTable("TaggedUsers");
                 });
 
             modelBuilder.Entity("SocialMediaApplication.Models.User", b =>
@@ -67,28 +111,57 @@ namespace SocialMediaApplication.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("PostsFeedId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("UserId");
+                    b.Property<bool>("isAdmin")
+                        .HasColumnType("tinyint(1)");
 
-                    b.HasIndex("PostsFeedId");
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("SocialMediaApplication.Models.Comments", b =>
+                {
+                    b.HasOne("SocialMediaApplication.Models.Feed", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("FeedId");
+                });
+
+            modelBuilder.Entity("SocialMediaApplication.Models.Feed", b =>
+                {
+                    b.HasOne("SocialMediaApplication.Models.User", null)
+                        .WithMany("Posts")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("SocialMediaApplication.Models.Likes", b =>
+                {
+                    b.HasOne("SocialMediaApplication.Models.Feed", null)
+                        .WithMany("LikedById")
+                        .HasForeignKey("FeedId");
+                });
+
+            modelBuilder.Entity("SocialMediaApplication.Models.TaggedUsers", b =>
+                {
+                    b.HasOne("SocialMediaApplication.Models.Feed", null)
+                        .WithMany("TaggedUsersId")
+                        .HasForeignKey("FeedId");
+                });
+
+            modelBuilder.Entity("SocialMediaApplication.Models.Feed", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("LikedById");
+
+                    b.Navigation("TaggedUsersId");
+                });
+
             modelBuilder.Entity("SocialMediaApplication.Models.User", b =>
                 {
-                    b.HasOne("SocialMediaApplication.Models.Feed", "Posts")
-                        .WithMany()
-                        .HasForeignKey("PostsFeedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618

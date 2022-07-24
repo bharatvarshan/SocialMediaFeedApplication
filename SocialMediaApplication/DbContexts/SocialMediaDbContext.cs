@@ -3,9 +3,9 @@ using SocialMediaApplication.Models;
 
 namespace SocialMediaApplication.DbContexts
 {
-    public class MyDbContext : DbContext
+    public class SocialMediaDbContext : DbContext
     {
-        public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
+        public SocialMediaDbContext(DbContextOptions<SocialMediaDbContext> options) : base(options)
         {
            
         }
