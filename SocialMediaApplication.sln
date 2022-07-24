@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMediaApplication", "SocialMediaApplication\SocialMediaApplication.csproj", "{41A28734-BECB-43CA-B23D-130C6CD93FDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMediaApplication", "SocialMediaApplication\SocialMediaApplication.csproj", "{41A28734-BECB-43CA-B23D-130C6CD93FDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthMicroService", "AuthMicroService\AuthMicroService.csproj", "{8A7B6EB9-77B9-4633-872A-89C280785319}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{41A28734-BECB-43CA-B23D-130C6CD93FDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41A28734-BECB-43CA-B23D-130C6CD93FDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41A28734-BECB-43CA-B23D-130C6CD93FDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A7B6EB9-77B9-4633-872A-89C280785319}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A7B6EB9-77B9-4633-872A-89C280785319}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A7B6EB9-77B9-4633-872A-89C280785319}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A7B6EB9-77B9-4633-872A-89C280785319}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

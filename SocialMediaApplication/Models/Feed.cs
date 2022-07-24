@@ -17,7 +17,6 @@ namespace SocialMediaApplication.Models
         public string FeedBody { get; set; } = null!;
         public int? PostedBy { get; set; }
 
-        public virtual User? PostedByNavigation { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Like> Likes { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }

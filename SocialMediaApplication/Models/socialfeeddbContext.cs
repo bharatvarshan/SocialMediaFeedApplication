@@ -44,8 +44,6 @@ namespace SocialMediaApplication.Models
 
                 entity.HasIndex(e => e.CommentedFeed, "CommentedFeed_idx");
 
-                entity.Property(e => e.CommentId).ValueGeneratedNever();
-
                 entity.Property(e => e.Comment1).HasColumnName("Comment");
 
                 entity.HasOne(d => d.CommentedByNavigation)
@@ -65,11 +63,6 @@ namespace SocialMediaApplication.Models
                 entity.ToTable("feeds");
 
                 entity.HasIndex(e => e.PostedBy, "PostedBy_idx");
-
-                entity.HasOne(d => d.PostedByNavigation)
-                    .WithMany(p => p.Feeds)
-                    .HasForeignKey(d => d.PostedBy)
-                    .HasConstraintName("PostedBy");
             });
 
             modelBuilder.Entity<Like>(entity =>

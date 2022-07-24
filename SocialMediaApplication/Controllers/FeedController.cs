@@ -75,7 +75,7 @@ namespace SocialMediaApplication.Controllers
 
         [HttpPut]
         [Route("[Action]/{feedId}")]
-        public string UpdateFeed(int feedId, [FromBody] Feed feed)
+        public async Task<ActionResult<Feed>> UpdateFeed(int feedId, [FromBody] Feed feed)
         {
 
             var userId = decode();
@@ -85,24 +85,24 @@ namespace SocialMediaApplication.Controllers
                 var newChanges = _context.Feeds.Where(e => e.FeedId == feedId && e.PostedBy == userId).SingleOrDefault();
                 if (newChanges == null)
                 {
-                    return "Update Failed";
+                    return Ok(new {msg = "Update Failed" });
                 } 
                 newChanges.Title = feed.Title;
                 newChanges.FeedBody = feed.FeedBody;
                 
                
                 _context.SaveChanges();
-                return "Update Successfull";
+                return Ok(new {msg = "Update Successfull" });
             }
             catch (Exception ex)
             {
-                return "Error Occured " + ex;
+                return Ok(new { msg = "Error Occured " + ex });
             }
         }
 
         [HttpDelete]
         [Route("[Action]/{feedId}")]
-        public string DeleteFeed(int? feedId)
+        public async Task<ActionResult<Feed>> DeleteFeed(int? feedId)
         {
 
             var userId = decode();
@@ -111,11 +111,11 @@ namespace SocialMediaApplication.Controllers
                 var feed = _context.Feeds.Where(e => e.FeedId == feedId && e.PostedBy == userId).SingleOrDefault();
                 _context.Feeds.Remove(feed);
                 _context.SaveChanges();
-                return "Feed " + feed.FeedId + " is Deleted Successfully";
+                return Ok(new {msg = "Feed " + feed.FeedId + " is Deleted Successfully"});
             }
             catch (Exception ex)
             {
-                return "Exception occurred: " + ex;
+                return BadRequest(new {msg = "Exception occurred: " + ex });
             }
         }
 

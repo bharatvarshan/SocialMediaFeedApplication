@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "7JxZtFhAJYXBsA2ViwU1tBlE1XM2KpMOsijwMXPASDA=",
+  "Source": "AuthMicroService",
+  "BasePath": "_content/AuthMicroService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

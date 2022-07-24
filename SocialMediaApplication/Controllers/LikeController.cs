@@ -17,7 +17,7 @@ namespace SocialMediaApplication.Controllers
 
         [HttpPost]
         [Route("[Action]/{feedId}")]
-        public async Task<ActionResult<Like>> LikeFeed(int feedId)
+        public async Task<ActionResult<Like>> LikeFeed(int feedId , [FromBody] int fid)
         {
 
             var userId = decode();

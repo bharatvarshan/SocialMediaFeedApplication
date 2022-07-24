@@ -79,3 +79,4 @@ D:\presidio\SocialMediaApplication\SocialMediaApplication\obj\Debug\net6.0\refin
 D:\presidio\SocialMediaApplication\SocialMediaApplication\obj\Debug\net6.0\SocialMediaApplication.pdb
 D:\presidio\SocialMediaApplication\SocialMediaApplication\obj\Debug\net6.0\SocialMediaApplication.genruntimeconfig.cache
 D:\presidio\SocialMediaApplication\SocialMediaApplication\obj\Debug\net6.0\ref\SocialMediaApplication.dll
+D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\RabbitMQ.Client.dll

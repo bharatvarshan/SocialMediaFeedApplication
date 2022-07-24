@@ -11,7 +11,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
-
+using SocialMediaApplication.Sender;
 
 namespace CollegeManagement.Controllers
 {
@@ -47,7 +47,11 @@ namespace CollegeManagement.Controllers
                 return BadRequest("User Not Found");
             }
             string token = CreateToken(dbUser);
-            return Ok(token);
+            if(token != null)
+            {
+                Send.Producer("User Logged in Succesfully");
+            }
+            return Ok(new {msg = token , id = dbUser.UserId});
         }
 
         private string CreateToken(User user)
