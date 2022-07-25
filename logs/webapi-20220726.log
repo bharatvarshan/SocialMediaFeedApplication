@@ -1,0 +1,123 @@
+[2022-07-26 00:30:37.801 +05:30  INF]  User profile is available. Using 'C:\Users\VC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-07-26 00:30:38.854 +05:30  INF]  Now listening on: https://localhost:7070
+[2022-07-26 00:30:38.854 +05:30  INF]  Now listening on: http://localhost:5070
+[2022-07-26 00:30:38.860 +05:30  INF]  Application started. Press Ctrl+C to shut down.
+[2022-07-26 00:30:38.860 +05:30  INF]  Hosting environment: Development
+[2022-07-26 00:30:38.860 +05:30  INF]  Content root path: D:\presidio\SocialMediaApplication\SocialMediaApplication\
+[2022-07-26 00:30:42.400 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7070/swagger/index.html - -
+[2022-07-26 00:30:45.864 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7070/_framework/aspnetcore-browser-refresh.js - -
+[2022-07-26 00:30:46.003 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7070/_framework/aspnetcore-browser-refresh.js - - - 200 12014 application/javascript;+charset=utf-8 136.6504ms
+[2022-07-26 00:30:46.003 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7070/swagger/index.html - - - 200 - text/html;charset=utf-8 3658.2685ms
+[2022-07-26 00:30:46.120 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7070/_vs/browserLink - -
+[2022-07-26 00:30:47.047 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7070/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 926.8150ms
+[2022-07-26 00:30:47.279 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7070/swagger/v1/swagger.json - -
+[2022-07-26 00:30:47.996 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7070/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 716.3373ms
+[2022-07-26 00:31:44.034 +05:30  INF]  Request starting HTTP/2 POST https://localhost:7070/api/Auth/login application/json 49
+[2022-07-26 00:31:44.050 +05:30  INF]  CORS policy execution successful.
+[2022-07-26 00:31:44.330 +05:30  INF]  Executing endpoint 'CollegeManagement.Controllers.AuthController.Login (SocialMediaApplication)'
+[2022-07-26 00:31:44.431 +05:30  INF]  Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[SocialMediaApplication.Models.User]] Login(SocialMediaApplication.Models.Login) on controller CollegeManagement.Controllers.AuthController (SocialMediaApplication).
+[2022-07-26 00:31:46.112 +05:30  INF]  Authentication Loading...
+[2022-07-26 00:31:48.979 +05:30  INF]  Entity Framework Core 6.0.7 initialized 'socialfeeddbContext' using provider 'Pomelo.EntityFrameworkCore.MySql:6.0.1' with options: ServerVersion 8.0.29-mysql 
+[2022-07-26 00:31:50.904 +05:30  INF]  Executed DbCommand (189ms) [Parameters=[@__user_Email_0='?' (Size = 4000), @__user_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`UserId`, `u`.`Email`, `u`.`isAdmin`, `u`.`Password`, `u`.`UserName`
+FROM `users` AS `u`
+WHERE (`u`.`Email` = @__user_Email_0) AND (`u`.`Password` = @__user_Password_1)
+LIMIT 1
+[2022-07-26 00:31:53.230 +05:30  INF]  Executing OkObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-07-26 00:31:53.257 +05:30  INF]  Executed action CollegeManagement.Controllers.AuthController.Login (SocialMediaApplication) in 8810.9422ms
+[2022-07-26 00:31:53.259 +05:30  INF]  Executed endpoint 'CollegeManagement.Controllers.AuthController.Login (SocialMediaApplication)'
+[2022-07-26 00:31:53.289 +05:30  INF]  Request finished HTTP/2 POST https://localhost:7070/api/Auth/login application/json 49 - 200 - application/json;+charset=utf-8 9254.4017ms
+[2022-07-26 01:12:35.058 +05:30  INF]  User profile is available. Using 'C:\Users\VC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-07-26 01:12:36.340 +05:30  INF]  Now listening on: https://localhost:7070
+[2022-07-26 01:12:36.341 +05:30  INF]  Now listening on: http://localhost:5070
+[2022-07-26 01:12:36.347 +05:30  INF]  Application started. Press Ctrl+C to shut down.
+[2022-07-26 01:12:36.347 +05:30  INF]  Hosting environment: Development
+[2022-07-26 01:12:36.348 +05:30  INF]  Content root path: D:\presidio\SocialMediaApplication\SocialMediaApplication\
+[2022-07-26 01:12:39.179 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7070/swagger/index.html - -
+[2022-07-26 01:12:41.361 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7070/_framework/aspnetcore-browser-refresh.js - -
+[2022-07-26 01:12:41.419 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7070/swagger/index.html - - - 200 - text/html;charset=utf-8 2256.7880ms
+[2022-07-26 01:12:41.420 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7070/_framework/aspnetcore-browser-refresh.js - - - 200 12014 application/javascript;+charset=utf-8 47.4707ms
+[2022-07-26 01:12:41.837 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7070/_vs/browserLink - -
+[2022-07-26 01:12:42.450 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7070/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 611.8587ms
+[2022-07-26 01:12:42.713 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7070/swagger/v1/swagger.json - -
+[2022-07-26 01:12:43.430 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7070/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 717.5126ms
+[2022-07-26 01:13:25.792 +05:30  INF]  Request starting HTTP/2 POST https://localhost:7070/api/Auth/register application/json 70
+[2022-07-26 01:13:25.812 +05:30  INF]  CORS policy execution successful.
+[2022-07-26 01:13:26.187 +05:30  INF]  Executing endpoint 'CollegeManagement.Controllers.AuthController.Register (SocialMediaApplication)'
+[2022-07-26 01:13:26.618 +05:30  INF]  Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[SocialMediaApplication.Models.User]] Register(SocialMediaApplication.Models.User) on controller CollegeManagement.Controllers.AuthController (SocialMediaApplication).
+[2022-07-26 01:13:32.788 +05:30  INF]  Entity Framework Core 6.0.7 initialized 'socialfeeddbContext' using provider 'Pomelo.EntityFrameworkCore.MySql:6.0.1' with options: ServerVersion 8.0.29-mysql 
+[2022-07-26 01:13:35.199 +05:30  INF]  Executed DbCommand (175ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Boolean), @p2='?' (Size = 4000), @p3='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `users` (`Email`, `isAdmin`, `Password`, `UserName`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `UserId`
+FROM `users`
+WHERE ROW_COUNT() = 1 AND `UserId` = LAST_INSERT_ID();
+[2022-07-26 01:13:35.626 +05:30  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2022-07-26 01:13:35.661 +05:30  INF]  Executed action CollegeManagement.Controllers.AuthController.Register (SocialMediaApplication) in 9020.0378ms
+[2022-07-26 01:13:35.666 +05:30  INF]  Executed endpoint 'CollegeManagement.Controllers.AuthController.Register (SocialMediaApplication)'
+[2022-07-26 01:13:35.713 +05:30  INF]  Request finished HTTP/2 POST https://localhost:7070/api/Auth/register application/json 70 - 200 - text/plain;+charset=utf-8 9920.7741ms
+[2022-07-26 01:34:05.581 +05:30  INF]  Request starting HTTP/2 POST https://localhost:7070/api/Auth/login application/json 43
+[2022-07-26 01:34:05.621 +05:30  INF]  CORS policy execution successful.
+[2022-07-26 01:34:05.623 +05:30  INF]  Executing endpoint 'CollegeManagement.Controllers.AuthController.Login (SocialMediaApplication)'
+[2022-07-26 01:34:05.637 +05:30  INF]  Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[SocialMediaApplication.Models.User]] Login(SocialMediaApplication.Models.Login) on controller CollegeManagement.Controllers.AuthController (SocialMediaApplication).
+[2022-07-26 01:34:05.655 +05:30  INF]  Authentication Loading...
+[2022-07-26 01:34:05.905 +05:30  INF]  Entity Framework Core 6.0.7 initialized 'socialfeeddbContext' using provider 'Pomelo.EntityFrameworkCore.MySql:6.0.1' with options: ServerVersion 8.0.29-mysql 
+[2022-07-26 01:34:07.351 +05:30  INF]  Executed DbCommand (30ms) [Parameters=[@__user_Email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`UserId`, `u`.`Email`, `u`.`isAdmin`, `u`.`Password`, `u`.`UserName`
+FROM `users` AS `u`
+WHERE `u`.`Email` = @__user_Email_0
+LIMIT 1
+[2022-07-26 01:34:09.540 +05:30  INF]  Executing OkObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-07-26 01:34:09.552 +05:30  INF]  Executed action CollegeManagement.Controllers.AuthController.Login (SocialMediaApplication) in 3914.7622ms
+[2022-07-26 01:34:09.552 +05:30  INF]  Executed endpoint 'CollegeManagement.Controllers.AuthController.Login (SocialMediaApplication)'
+[2022-07-26 01:34:09.553 +05:30  INF]  Request finished HTTP/2 POST https://localhost:7070/api/Auth/login application/json 43 - 200 - application/json;+charset=utf-8 3973.6361ms
+[2022-07-26 01:41:43.342 +05:30  INF]  User profile is available. Using 'C:\Users\VC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-07-26 01:41:44.506 +05:30  INF]  Now listening on: https://localhost:7070
+[2022-07-26 01:41:44.507 +05:30  INF]  Now listening on: http://localhost:5070
+[2022-07-26 01:41:44.537 +05:30  INF]  Application started. Press Ctrl+C to shut down.
+[2022-07-26 01:41:44.541 +05:30  INF]  Hosting environment: Development
+[2022-07-26 01:41:44.541 +05:30  INF]  Content root path: D:\presidio\SocialMediaApplication\SocialMediaApplication\
+[2022-07-26 01:41:48.830 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7070/swagger/index.html - -
+[2022-07-26 01:41:52.425 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7070/_framework/aspnetcore-browser-refresh.js - -
+[2022-07-26 01:41:52.452 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7070/_framework/aspnetcore-browser-refresh.js - - - 200 12014 application/javascript;+charset=utf-8 24.8024ms
+[2022-07-26 01:41:52.452 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7070/swagger/index.html - - - 200 - text/html;charset=utf-8 3734.7095ms
+[2022-07-26 01:41:53.313 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7070/_vs/browserLink - -
+[2022-07-26 01:41:54.157 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7070/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 843.9433ms
+[2022-07-26 01:41:54.336 +05:30  INF]  Request starting HTTP/2 GET https://localhost:7070/swagger/v1/swagger.json - -
+[2022-07-26 01:41:55.188 +05:30  INF]  Request finished HTTP/2 GET https://localhost:7070/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 852.9079ms
+[2022-07-26 01:42:39.206 +05:30  INF]  Request starting HTTP/2 POST https://localhost:7070/api/Feed/AddFeed application/json 64
+[2022-07-26 01:42:39.222 +05:30  INF]  CORS policy execution successful.
+[2022-07-26 01:42:39.500 +05:30  INF]  Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (1)
+[2022-07-26 01:42:39.520 +05:30  INF]  AuthenticationScheme: Bearer was challenged.
+[2022-07-26 01:42:39.521 +05:30  INF]  Request finished HTTP/2 POST https://localhost:7070/api/Feed/AddFeed application/json 64 - 401 0 - 315.8168ms
+[2022-07-26 01:43:02.734 +05:30  INF]  Request starting HTTP/2 POST https://localhost:7070/api/Auth/login application/json 43
+[2022-07-26 01:43:02.751 +05:30  INF]  CORS policy execution successful.
+[2022-07-26 01:43:02.768 +05:30  INF]  Executing endpoint 'CollegeManagement.Controllers.AuthController.Login (SocialMediaApplication)'
+[2022-07-26 01:43:02.861 +05:30  INF]  Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[SocialMediaApplication.Models.User]] Login(SocialMediaApplication.Models.Login) on controller CollegeManagement.Controllers.AuthController (SocialMediaApplication).
+[2022-07-26 01:43:05.487 +05:30  INF]  Authentication Loading...
+[2022-07-26 01:43:09.119 +05:30  INF]  Entity Framework Core 6.0.7 initialized 'socialfeeddbContext' using provider 'Pomelo.EntityFrameworkCore.MySql:6.0.1' with options: ServerVersion 8.0.29-mysql 
+[2022-07-26 01:43:12.020 +05:30  INF]  Executed DbCommand (238ms) [Parameters=[@__user_Email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT `u`.`UserId`, `u`.`Email`, `u`.`isAdmin`, `u`.`Password`, `u`.`UserName`
+FROM `users` AS `u`
+WHERE `u`.`Email` = @__user_Email_0
+LIMIT 1
+[2022-07-26 01:43:14.477 +05:30  INF]  Executing OkObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-07-26 01:43:14.523 +05:30  INF]  Executed action CollegeManagement.Controllers.AuthController.Login (SocialMediaApplication) in 11641.4298ms
+[2022-07-26 01:43:14.526 +05:30  INF]  Executed endpoint 'CollegeManagement.Controllers.AuthController.Login (SocialMediaApplication)'
+[2022-07-26 01:43:14.556 +05:30  INF]  Request finished HTTP/2 POST https://localhost:7070/api/Auth/login application/json 43 - 200 - application/json;+charset=utf-8 11822.1456ms
+[2022-07-26 01:43:35.389 +05:30  INF]  Request starting HTTP/2 POST https://localhost:7070/api/Feed/AddFeed application/json 64
+[2022-07-26 01:43:35.417 +05:30  INF]  CORS policy execution successful.
+[2022-07-26 01:43:35.741 +05:30  INF]  Executing endpoint 'SocialMediaApplication.Controllers.FeedController.AddFeed (SocialMediaApplication)'
+[2022-07-26 01:43:35.770 +05:30  INF]  Route matched with {action = "AddFeed", controller = "Feed"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[SocialMediaApplication.Models.Feed]] AddFeed(SocialMediaApplication.Models.Feed) on controller SocialMediaApplication.Controllers.FeedController (SocialMediaApplication).
+[2022-07-26 01:43:35.807 +05:30  INF]  Entity Framework Core 6.0.7 initialized 'socialfeeddbContext' using provider 'Pomelo.EntityFrameworkCore.MySql:6.0.1' with options: ServerVersion 8.0.29-mysql 
+[2022-07-26 01:43:37.406 +05:30  INF]  Executed DbCommand (21ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Int32), @p2='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `feeds` (`FeedBody`, `PostedBy`, `Title`)
+VALUES (@p0, @p1, @p2);
+SELECT `FeedId`
+FROM `feeds`
+WHERE ROW_COUNT() = 1 AND `FeedId` = LAST_INSERT_ID();
+[2022-07-26 01:43:38.383 +05:30  INF]  Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-07-26 01:43:38.386 +05:30  INF]  Executed action SocialMediaApplication.Controllers.FeedController.AddFeed (SocialMediaApplication) in 2615.8705ms
+[2022-07-26 01:43:38.386 +05:30  INF]  Executed endpoint 'SocialMediaApplication.Controllers.FeedController.AddFeed (SocialMediaApplication)'
+[2022-07-26 01:43:38.391 +05:30  INF]  Request finished HTTP/2 POST https://localhost:7070/api/Feed/AddFeed application/json 64 - 200 - application/json;+charset=utf-8 3002.1973ms

@@ -4,11 +4,14 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using SocialMediaApplication.Models;
+using SocialMediaApplication.Services;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddScoped<LikeService>();
 // Add services to the container.
 
 var logger = new LoggerConfiguration()

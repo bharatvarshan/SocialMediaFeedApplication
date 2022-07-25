@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "EubSg7SvdotiQqQhMtxTELdoH8JXJwmDU8Nu+/Ucm1AX7YwBAS2brCRjFuRqqFagJufjaMkEv6a4QqW2vBVKuA==",
+  "dgSpecHash": "l2+4qDXsVK2qSFSOXo0prxa3qfaYevbvqbHvhP0fXpOVc2PlFvfL5pka59nCQoiEnefionQcdQ3wrW/IMvUk4A==",
   "success": true,
   "projectFilePath": "D:\\presidio\\SocialMediaApplication\\SocialMediaApplication\\SocialMediaApplication.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\VC\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\VC\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\VC\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.7\\microsoft.aspnetcore.authentication.jwtbearer.6.0.7.nupkg.sha512",
     "C:\\Users\\VC\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

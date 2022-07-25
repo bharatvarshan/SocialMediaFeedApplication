@@ -2,56 +2,59 @@
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
+using SocialMediaApplication.Services;
 
 namespace SocialMediaApplication.Controllers
 {
-    [Route("api/[controller]"), Authorize(Roles = "1")]
+    //[Route("api/[controller]"), Authorize(Roles = "1")]
+    [Route("api/[controller]")]
     [ApiController]
     public class LikeController : ControllerBase
     {
-        private readonly socialfeeddbContext _context;
-        public LikeController(socialfeeddbContext context)
+        private readonly LikeService _service;
+        public LikeController(LikeService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [HttpPost]
         [Route("[Action]/{feedId}")]
-        public async Task<ActionResult<Like>> LikeFeed(int feedId , [FromBody] int fid)
+        public async Task<IActionResult> LikeFeed(int feedId)
         {
+
 
             var userId = decode();
 
-            _context.Likes.Add(new Like
-            {
-                UserLiked = userId,
-                FeedLiked = feedId
-            })
+            var feedObj = _service.Like(feedId, userId);
 
-         ;
-            await _context.SaveChangesAsync();
-            return Ok(new { msg = "User "+ userId + " Liked Feed " + feedId +" Successfully" });
+            if(feedObj != null)
+            {
+                return Ok(feedObj);
+            }
+            return BadRequest(new {msg = "Unable to like feed"});
+            
         }
 
 
         [HttpDelete]
         [Route("[Action]/{feedId}")]
-        public async Task<ActionResult<Like>> UnlikeFeed( int feedId)
+        public async Task<IActionResult> UnlikeFeed( int feedId)
         {
 
             var userId = decode();
-            try
-            {
-                var feed = _context.Likes.Where(e => e.FeedLiked == feedId && e.UserLiked == userId).SingleOrDefault();
-                _context.Likes.Remove(feed);
-                _context.SaveChanges();
-                return Ok(new { msg = "User " + userId + " Unliked Feed " + feedId + " Successfully" });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest("Exception occurred: " + ex);
-            }
+
+
+            var feed = await _service.Unlike(feedId, userId);
+                if(feed != null)
+                {
+                    return Ok(feed);
+                }
+            return BadRequest(new { msg = "Unable to like feed" });
+
+                
+   
         }
+
 
         private int decode()
         {
@@ -64,7 +67,6 @@ namespace SocialMediaApplication.Controllers
             Console.WriteLine("id", id);
             return Convert.ToInt32(id);
         }
-
 
     }
 }

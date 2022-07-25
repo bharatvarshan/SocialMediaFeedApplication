@@ -1,6 +1,6 @@
 ﻿using SocialMediaApplication.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
+using SocialMediaApplication.Services;
 
 namespace SocialMediaApplication.Controllers
 {
@@ -8,42 +8,26 @@ namespace SocialMediaApplication.Controllers
     [ApiController]
     public class TagController : ControllerBase
     {
-        private readonly socialfeeddbContext _context;
-        public TagController(socialfeeddbContext context)
+        private readonly TagService _service;
+        public TagController(TagService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [HttpPost]
         [Route("[Action]/{userId}/{feedId}")]
-        public async Task<ActionResult<Tag>> TagFeed(int userId, int feedId)
+        public async Task<IActionResult> TagFeed(int userId, int feedId)
         {
 
-            
-
-            _context.Tags.Add(new Tag
+            var tagObj = _service.Tag(userId, feedId);
+            if (tagObj != null)
             {
-                FeedTagged = feedId,
-                UserTagged = userId
-            })
-
-         ;
-            await _context.SaveChangesAsync();
-            return Ok(new { msg = "User Tagged Successfully" });
+                return Ok(tagObj);
+            }
+            return BadRequest(new { msg = "Unable to Tag feed" });
         }
 
-        private int decode()
-        {
-            var handler = new JwtSecurityTokenHandler();
-            string authHeader = Request.Headers["Authorization"];
-            authHeader = authHeader.Replace("bearer ", "");
-            var jsonToken = handler.ReadToken(authHeader);
-            var tokenS = handler.ReadToken(authHeader) as JwtSecurityToken;
-            var id = tokenS.Claims.First(claim => claim.Type == "Id").Value;
-            Console.WriteLine("id", id);
-            return Convert.ToInt32(id);
-        }
-
+        
 
 
     }

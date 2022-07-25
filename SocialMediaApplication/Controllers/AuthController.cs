@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using SocialMediaApplication.Sender;
+using bcrypt = BCrypt.Net.BCrypt;
 
 namespace CollegeManagement.Controllers
 {
@@ -34,6 +35,7 @@ namespace CollegeManagement.Controllers
         [Route("register")]
         public async Task<ActionResult<User>> Register([FromBody] User user)
         {
+            user.Password = bcrypt.HashPassword(user.Password, 12);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return Ok("User Created Successfully");
@@ -44,17 +46,28 @@ namespace CollegeManagement.Controllers
         public async Task<ActionResult<User>> Login([FromBody] Login user)
         {
             _logger.LogInformation("Authentication Loading...");
-            var dbUser = await _context.Users.FirstOrDefaultAsync(x => x.Email == user.Email && x.Password == user.Password);
-            if (dbUser == null)
+            var dbUser = await _context.Users.FirstOrDefaultAsync(x => x.Email == user.Email);
+            if (dbUser != null)
             {
+                if(bcrypt.Verify(user.Password, dbUser.Password)){
+                    string token = CreateToken(dbUser);
+                    if (token != null)
+                    {
+                        Send.Producer("User Logged in Succesfully");
+                    }
+                    return Ok(new { msg = token, id = dbUser.UserId });
+                }
+                else
+                {
+                    return BadRequest("Incorrect Password");
+                }
+
+                
+            }
+            
                 return BadRequest("User Not Found");
-            }
-            string token = CreateToken(dbUser);
-            if(token != null)
-            {
-                Send.Producer("User Logged in Succesfully");
-            }
-            return Ok(new {msg = token , id = dbUser.UserId});
+            
+            
         }
 
         private string CreateToken(User user)

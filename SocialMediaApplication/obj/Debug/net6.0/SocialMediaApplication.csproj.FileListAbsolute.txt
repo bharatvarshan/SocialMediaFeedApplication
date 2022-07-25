@@ -89,3 +89,4 @@ D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\Seril
 D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\Serilog.Sinks.Console.dll
 D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\Serilog.Sinks.Debug.dll
 D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\Serilog.Sinks.File.dll
+D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\BCrypt.Net-Next.dll

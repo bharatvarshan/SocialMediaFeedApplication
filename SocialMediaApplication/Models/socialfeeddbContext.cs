@@ -49,6 +49,7 @@ namespace SocialMediaApplication.Models
                 entity.HasOne(d => d.CommentedByNavigation)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.CommentedBy)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("CommentedBy");
 
                 entity.HasOne(d => d.CommentedFeedNavigation)
@@ -73,8 +74,6 @@ namespace SocialMediaApplication.Models
 
                 entity.HasIndex(e => e.UserLiked, "UserLiked_idx");
 
-                entity.Property(e => e.LikeId).ValueGeneratedNever();
-
                 entity.HasOne(d => d.FeedLikedNavigation)
                     .WithMany(p => p.Likes)
                     .HasForeignKey(d => d.FeedLiked)
@@ -95,16 +94,16 @@ namespace SocialMediaApplication.Models
 
                 entity.HasIndex(e => e.UserTagged, "UserTagged_idx");
 
-                entity.Property(e => e.TagId).ValueGeneratedNever();
-
                 entity.HasOne(d => d.FeedTaggedNavigation)
                     .WithMany(p => p.Tags)
                     .HasForeignKey(d => d.FeedTagged)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FeedTagged");
 
                 entity.HasOne(d => d.UserTaggedNavigation)
                     .WithMany(p => p.Tags)
                     .HasForeignKey(d => d.UserTagged)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("UserTagged");
             });
 
