@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using SocialMediaApplication.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
@@ -10,7 +11,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+var logger = new LoggerConfiguration()
+  .ReadFrom.Configuration(builder.Configuration)
+  .Enrich.FromLogContext()
+  .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
+
 builder.Services.AddControllers();
+
+//Cross Origin for the Front End
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "myAllowOrigins", policy =>
@@ -48,6 +58,8 @@ builder.Services.AddDbContext<socialfeeddbContext>(options =>
     var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
     options.UseMySql(builder.Configuration.GetConnectionString("MySqlDevEnv"), serverVersion);
 });
+
+
 
 
 var app = builder.Build();

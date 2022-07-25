@@ -21,12 +21,14 @@ namespace CollegeManagement.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly socialfeeddbContext _context;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(IConfiguration configuration, socialfeeddbContext context)
+        public AuthController(IConfiguration configuration, socialfeeddbContext context, ILogger<AuthController> logger)
         {
             _context = context;
             _configuration = configuration;
-        }
+            _logger = logger;
+        }  
 
         [HttpPost]
         [Route("register")]
@@ -41,6 +43,7 @@ namespace CollegeManagement.Controllers
         [Route("login")]
         public async Task<ActionResult<User>> Login([FromBody] Login user)
         {
+            _logger.LogInformation("Authentication Loading...");
             var dbUser = await _context.Users.FirstOrDefaultAsync(x => x.Email == user.Email && x.Password == user.Password);
             if (dbUser == null)
             {

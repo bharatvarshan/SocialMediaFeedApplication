@@ -80,3 +80,12 @@ D:\presidio\SocialMediaApplication\SocialMediaApplication\obj\Debug\net6.0\Socia
 D:\presidio\SocialMediaApplication\SocialMediaApplication\obj\Debug\net6.0\SocialMediaApplication.genruntimeconfig.cache
 D:\presidio\SocialMediaApplication\SocialMediaApplication\obj\Debug\net6.0\ref\SocialMediaApplication.dll
 D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\RabbitMQ.Client.dll
+D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\Serilog.dll
+D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\Serilog.AspNetCore.dll
+D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\Serilog.Extensions.Hosting.dll
+D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\Serilog.Extensions.Logging.dll
+D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\Serilog.Formatting.Compact.dll
+D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\Serilog.Settings.Configuration.dll
+D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\Serilog.Sinks.Console.dll
+D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\Serilog.Sinks.Debug.dll
+D:\presidio\SocialMediaApplication\SocialMediaApplication\bin\Debug\net6.0\Serilog.Sinks.File.dll

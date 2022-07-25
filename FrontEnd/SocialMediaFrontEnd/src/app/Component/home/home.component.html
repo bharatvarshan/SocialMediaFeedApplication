@@ -1,1 +1,19 @@
-<p>home works!</p>
+<app-navbar></app-navbar>
+
+
+<div class=" row card-group">
+  <div class="card-div col-6" *ngFor="let feed of allFeed">
+    <div class="card-div card">
+      <h5 class="card-title">{{feed.title}}</h5>
+      <p class="card-text">{{feed.feedBody}}</p>
+      <p class="card-text">Posted By: {{feed.postedBy}}</p>
+
+
+      <div>
+        <a href="#" onclick="LikeFeed()" class="btn btn-primary">Like Post</a>
+        <a href="#" onclick="LikeFeed()" class="btn btn-primary">Add Comment</a>
+
+      </div>
+    </div>
+  </div>
+</div>

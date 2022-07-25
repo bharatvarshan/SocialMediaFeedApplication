@@ -10,18 +10,23 @@ class Send
         using (var connection = factory.CreateConnection())
         using (var channel = connection.CreateModel())
         {
-            channel.QueueDeclare(queue: "hello",
+            Console.WriteLine("Intializing Login!");
+            Console.WriteLine("Generating Token");
+
+            channel.QueueDeclare(queue: "auth",
                                  durable: false,
                                  exclusive: false,
                                  autoDelete: false,
                                  arguments: null);
             var body = Encoding.UTF8.GetBytes(message);
             channel.BasicPublish(exchange: "",
-                                 routingKey: "hello",
+                                 routingKey: "auth",
                                  basicProperties: null,
                                  body: body);
-            Console.WriteLine(" [x] Sent {0}", message);
+            Console.WriteLine(message);
+            Console.WriteLine("Token generated Successfully");
+
         }
-        Console.WriteLine(" Press [enter] to exit.");
+
     }
 }

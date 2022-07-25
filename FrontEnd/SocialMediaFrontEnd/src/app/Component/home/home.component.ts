@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Feed } from 'src/app/feed';
 
 import { PostService } from 'src/app/services/post.service';
 
@@ -11,23 +12,26 @@ import { PostService } from 'src/app/services/post.service';
 export class HomeComponent implements OnInit {
   constructor(public postService: PostService, private router: Router) {}
 
+  allFeed!: Feed[];
+
   ngOnInit(): void {
-    this.postService.AddFeed('Title', 'new Body').subscribe({
-      next: (res: any) => {
-        console.log(res);
-      },
-    });
+    // this.postService.AddFeed('Title', 'new Body').subscribe({
+    //   next: (res: any) => {
+    //     console.log(res);
+    //   },
+    // });
     // this.postService.GetFeed().subscribe({
     //   next: (res: any) => {
     //     console.log(res);
     //   },
     // });
 
-    // this.postService.GetAllFeed().subscribe({
-    //   next: (res: any) => {
-    //     console.log(res);
-    //   },
-    // });
+    this.postService.GetAllFeed().subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.allFeed = res;
+      },
+    });
 
     // this.postService.DeleteFeed(10).subscribe({
     //   next: (res: any) => {
@@ -53,10 +57,10 @@ export class HomeComponent implements OnInit {
     //   },
     // });
 
-    this.postService.AddTag(3, 12).subscribe({
-      next: (res: any) => {
-        console.log(res);
-      },
-    });
+    // this.postService.AddTag(3, 12).subscribe({
+    //   next: (res: any) => {
+    //     console.log(res);
+    //   },
+    // });
   }
 }

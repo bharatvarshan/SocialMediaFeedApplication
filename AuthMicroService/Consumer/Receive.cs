@@ -11,7 +11,9 @@ class Receive
         using (var connection = factory.CreateConnection())
         using (var channel = connection.CreateModel())
         {
-            channel.QueueDeclare(queue: "hello",
+            Console.WriteLine("Waiting For Token Generation...");
+
+            channel.QueueDeclare(queue: "auth",
                                  durable: false,
                                  exclusive: false,
                                  autoDelete: false,
@@ -21,12 +23,12 @@ class Receive
             {
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
-                Console.WriteLine(" [x] Received {0}", message);
+                Console.WriteLine(message);
             };
-            channel.BasicConsume(queue: "hello",
+            channel.BasicConsume(queue: "auth",
                                  autoAck: true,
                                  consumer: consumer);
-            Console.WriteLine(" Press [enter] to exit.");
+            
             Console.ReadLine();
         }
     }
